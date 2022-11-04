@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISHOP</title>
+  </head>
+  <body>
+    <div id="table"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+      function CreateTable(props) {
+        return (
+          <div>
+            <h3>Категория: {props.name}</h3>
+            <p> Цена: {props.price}</p>
+            <div>
+              <a href={props.url}>Ссылка</a>
+            </div>
+            <img src={props.photo} alt="" style= {{height: 250}}></img>
+            <p>Количество на складе: {props.quantity}</p>
+          </div>
+        );
+      }
+
+      const productsArr = [
+        {
+          name: "dress",
+          price: 100,
+          url: "https://elema.by/catalog/platya/plate-zhenskoe-21-2305-21-2305/",
+          photo: "img/dress.jpeg",
+          quantity: 6,
+        },
+        {
+          name: "coat",
+          price: 200,
+          url: "https://elema.by/catalog/zhenskaya-odezhda/palto-zhenskoe-demisezonnoe-1-127321-1/",
+          photo: "img/coat.jpeg",
+          quantity: 3,
+        },
+      ];
+
+      function Table() {
+        return (
+          <div>
+            {productsArr.map((element) => (
+              <CreateTable
+                name={element.name}
+                price={element.price}
+                url={element.url}
+                photo={element.photo}
+                quantity={element.quantity}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("table"));
+
+      root.render(<Table />);
+    </script>
+  </body>
+</html>
